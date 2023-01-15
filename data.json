@@ -1,0 +1,27 @@
+[
+    {   "id": 1,
+        "nombre": "bekind",
+		"marca": "Boally",
+		"imagen": "img/bekind.webp",
+		"precio": "500"
+    },
+    {   "id": 2,
+        "nombre": "Emotions",
+		"marca": "Boally",
+		"imagen": "img/emociones.jpg",
+		"precio": "800"
+    },
+    {   "id": 3,
+    "nombre": "Skills",
+    "marca": "Boally",
+    "imagen": "img/skills.jpg",
+    "precio": "50"
+    }, 
+    {   "id": 4,
+        "nombre": "focus",
+        "marca": "Boally",
+        "imagen": "img/emociones.jpg",
+        "precio": "50"
+     }
+]
+
