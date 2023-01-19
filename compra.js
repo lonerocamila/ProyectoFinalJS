@@ -1,14 +1,13 @@
-
-
-Carrito = document.getElementById ('carrito')
-const producto =document.getElementById ('lista-productos')
-
-const listaProductos = document.querySelector ('#lista-carrito tbody')
+const compra =  new Carrito ();
+listaCompra  = document.querySelector('#listaCompra tbody');
 
 cargarEventos();
 
-function cargarEventos (){
-    productos.addEventListener('click', (e)=> comprarProducto(e));
-    Carrito.addEventListener('click',(e))
 
+function cargarEventos(){
+    document.addEventListener('DOMContentLoaded', compra.leerLSCompra());
+    
+    carrito.addEventListener('click', (e)=>{compra.eliminarProducto(e)})
 }
+
+

@@ -22,26 +22,29 @@ leerDatosProducto(producto){
            cantidad: 1,
         }
         let productosLS = this.obtenerProductosLS();
-        productosLS.forEach(function(productoLS));
-        if (productoLs.id === infoProducto.id){
-            productosLS = productosLS.id;
-        }
-        if (productosLS === infoProducto.id ){
-            Swal.fire({
-                icon: 'info',
-                title: 'Oops...',
-                text: 'El producto fue agregado!',
-                timer: 1000,
-                showConfirmButton: false,
-              })
-        }
-
-        else{
+        array.forEach(productoLS => {
+            if (productoLs.id === infoProducto.id){
+                productosLS = productosLS.id;
+            };
+            if (productosLS === infoProducto.id ){
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: 'El producto fue agregado!',
+                    timer: 1000,
+                    showConfirmButton: false,
+                  })
+            }
+            else{
+                this.insertarCarrito(infoProducto);
+            }
             this.insertarCarrito(infoProducto);
-        }
-        this.insertarCarrito(infoProducto)
-
+    
+        });
+            
+        
     }
+        
     insertarCarrito(producto){
         const row = document.createElement ('tr');
         row.innerHTML = `
@@ -99,40 +102,69 @@ leerDatosProducto(producto){
         return productoLS;
       }
     }
-    
+
+
     eliminarProductoLS(productoID){
         let productosLS;
         productosLS = this.obtenerProductosLS();
-        productosLS.forEach(function(productosLS, index){
+        productosLS.forEach(productosLS,index => {
             if (productosLS.id === productoID){
                 productosLS.splice(index,1)
             }
-            
+            localStorage.setItem('productos', JSON.stringify('productosLS'));
         });
-        localStorage.setItem('productos', JSON.stringify('productosLS'));
-    }
+        
     leerLS(){
         let productosLS;
         productosLS = this.obtenerProductosLS();
-        productosLS = forEach(function(producto) {
+        productosLS.forEach(producto => {
             const row = document.createElement ('tr');
-                row.innerHTML = `
-                <td>
-                <img src="${producto.imagen}" width: 100>
-                </td>
-                <td>
-                ${producto.titulo}
-                ${producto.precio}
-                </td>
-                <td>
-                <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${productO.id} ></a>
-                </td>
-                `;
-
+            row.innerHTML = `
+            <td>
+            <img src="${producto.imagen}" width: 100>
+            </td>
+            <td>
+            ${producto.titulo}
+            ${producto.precio}
+            </td>
+            <td>
+            <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${productO.id} ></a>
+            </td>
+            `;
             
         });
+        listaProductos.appendChild (row);
+       
     }
-
+    leerLSCompra(){
+        let productosLS;
+        productosLS = this.obtenerProductosLS();
+        productosLS.forEach(producto => {
+            const row = document.createElement ('tr');
+            row.innerHTML = `
+            <td>
+            <img src="${producto.imagen}" width: 100>
+            </td>
+            <td>
+            ${producto.titulo}
+            ${producto.precio}
+            </td>
+            <td>
+                <input type= "number" class="form-control cantidad" min="1" value=${producto.cantidad}> 
+            </td>
+            <td>
+            ${producto.precio * producto.cantidad }
+            </td>
+            <td>
+            <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${productO.id} ></a>
+            </td>
+            `;
+            
+        });
+        listaCompra.appendChild (row);
+       
+    }
+    
     
     vaciarLS(){
     localStorage.clear();
@@ -147,12 +179,23 @@ leerDatosProducto(producto){
                 timer: 2000,
                 showConfirmButton: false,
 
-        }
-        location.href= "compra.html"
+        },
+        location.href= "compra.html",
     }
 
 }
 
 
+    }
 
+    calcularTotal(){
+        let productoLS;
+        let total = 0 , subtotal = 0, iva = 0 ;
+        productoLS = this.obtenerProductosLS();
+        // HACER UN FOR LOOP
+        // for(let i= 0; i < productoLS.length; i++);
+        // let element = number (productoLS[i].precio * productoLS[i].cantidad);
+        // total = total + element;
+    
+    }
 
