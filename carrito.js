@@ -1,5 +1,22 @@
 const { default: Swal } = require("sweetalert2");
 
+const fetchData = async () => {
+	fetch("data.json")
+		.then((response => response.json())
+		.then((productos) => {
+			
+			listaProductos.forEach((producto) => {
+				let content = document.createElement("div");
+				content.className = "card";
+				content.innerHTML = `
+        <img src="${verdu.img}" class="card-img-top">
+        <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <p class="card-text">${producto.cantidad} $${verdu.precio}</p>
+        </div>
+        
+        `;
+
 class Carrito{
     // añadir producto al Carrito
     comprarProducto (e){
@@ -56,7 +73,7 @@ leerDatosProducto(producto){
         ${producto.precio}
         </td>
         <td>
-        <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${productO.id} ></a>
+        <a href="#" class= "borrar-producto fas fa-times-circule" data-id= ${producto.id} ></a>
         </td>
         `;
         listaProductos.appendChild(row); 
@@ -72,6 +89,7 @@ leerDatosProducto(producto){
         productoID = producto.querySelector ('a').getAttribute('data-id');
     }
     this.eliminarProductoLS(productosID);
+    this.calcularTotal();
 
    }
 
@@ -104,7 +122,7 @@ leerDatosProducto(producto){
     }
 
 
-    eliminarProductoLS(productoID){
+    function eliminarProductoLS(productoID){
         let productosLS;
         productosLS = this.obtenerProductosLS();
         productosLS.forEach(productosLS,index => {
@@ -114,7 +132,7 @@ leerDatosProducto(producto){
             localStorage.setItem('productos', JSON.stringify('productosLS'));
         });
         
-    leerLS(){
+    function leerLS(){
         let productosLS;
         productosLS = this.obtenerProductosLS();
         productosLS.forEach(producto => {
@@ -136,7 +154,7 @@ leerDatosProducto(producto){
         listaProductos.appendChild (row);
        
     }
-    leerLSCompra(){
+    function leerLSCompra(){
         let productosLS;
         productosLS = this.obtenerProductosLS();
         productosLS.forEach(producto => {
@@ -166,10 +184,10 @@ leerDatosProducto(producto){
     }
     
     
-    vaciarLS(){
+    function vaciarLS(){
     localStorage.clear();
     }
-    procesarPedido(e){
+    function procesarPedido(e){
         e.preventDefault();
         if (this.obtenerProductosLS().length === 0){
             Swal.fire({
@@ -181,14 +199,10 @@ leerDatosProducto(producto){
 
         },
         location.href= "compra.html",
-    }
-
-}
+        
 
 
-    }
-
-    calcularTotal(){
+   function calcularTotal(){
         let productoLS;
         let total = 0 , subtotal = 0, iva = 0 ;
         productoLS = this.obtenerProductosLS();
@@ -197,5 +211,12 @@ leerDatosProducto(producto){
         // let element = number (productoLS[i].precio * productoLS[i].cantidad);
         // total = total + element;
     
-    }
+    iva = parseFloat(total * 0,21). toFixed(2);
+    subtotal = parseFloat (total-iva).toFixed(2);
 
+    document.getElementsById('subtotal').innerHTML = "$" + subtotal;
+    document.getElementById('iva').innerHTML = "$" + iva;
+    document.getElementById('total').innerHTML = "$" + total.toFixed(2);
+
+
+})

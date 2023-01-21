@@ -61,7 +61,11 @@ ul{
     max-width: 1280px;
     margin: 0 auto;
     padding: auto;
-        
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
  }
 
  flexitem{
@@ -126,6 +130,14 @@ background: #9c22e8;
 height: fit-content;
 
 }
+.lista{
+   padding:    5px;
+   margin: 5px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   align-content: center;
+}  
 
 .trandings{
 
@@ -141,3 +153,35 @@ height: fit-content;
    margin: 20px;
 
 }
+/* para  el gif loading */
+.cargando {
+   display: none;
+}
+
+
+/* RESPONSIVE */
+
+@media (min-width: 576px) {
+   .container {
+     max-width: 540px;
+   }
+ }
+ 
+ @media (min-width: 768px) {
+   .container {
+     max-width: 720px;
+   }
+ }
+ 
+ @media (min-width: 992px) {
+   .container {
+     max-width: 960px;
+   }
+ }
+ 
+ @media (min-width: 1200px) {
+   .container {
+     max-width: 1140px;
+   }
+ }
+ /*FIN REESPONSIVE  */
